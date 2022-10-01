@@ -23,10 +23,18 @@
 
     @if ($blog->count())
         <div class="card mb-3">
-            <img src="https://source.unsplash.com/1200x400?{{ $blog[0]->category->name }}" class="card-img-top"
-                alt="{{ $blog[0]->category->name }}">
+            @if ($blog[0]->image)
+                <div style="max-height: 350px; overflow: hidden">
+                    <img src="{{ asset('storage/' . $blog[0]->image) }}" class="card-img-top"
+                        alt="{{ $blog[0]->category->name }}">
+                </div>
+            @else
+                <img src="https://source.unsplash.com/1200x400?{{ $blog[0]->category->name }}" class="card-img-top"
+                    alt="{{ $blog[0]->category->name }}">
+            @endif
             <div class="card-body text-center">
-                <h3 class="card-title"><a href="/blog/{{ $blog[0]->slug }}" class="text-dark">{{ $blog[0]->title }}</a></h3>
+                <h3 class="card-title"><a href="/blog/{{ $blog[0]->slug }}" class="text-dark">{{ $blog[0]->title }}</a>
+                </h3>
 
                 <p><small class="text-muted">By : <a
                             href="/blog?author={{ $blog[0]->author->username }}">{{ $blog[0]->author->name }}</a> in <a
@@ -47,8 +55,13 @@
                             <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7)"><a
                                     href="/blog?category={{ $b->category->slug }}"
                                     class="text-white">{{ $b->category->name }}</a></div>
-                            <img src="https://source.unsplash.com/500x400?{{ $b->category->name }}" class="card-img-top"
-                                alt="{{ $b->category->name }}">
+                            @if ($b->image)
+                                <img src="{{ asset('storage/' . $b->image) }}" class="card-img-top"
+                                    alt="{{ $b->category->name }}">
+                            @else
+                                <img src="https://source.unsplash.com/500x400?{{ $b->category->name }}"
+                                    class="card-img-top" alt="{{ $b->category->name }}">
+                            @endif
                             <div class="card-body">
                                 <h5 class="card-title"><a href="/blog/{{ $b->slug }}">{{ $b->title }}</a></h5>
                                 <p><small class="text-muted">By : <a

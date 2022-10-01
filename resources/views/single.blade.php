@@ -7,8 +7,15 @@
                 <h2>{{ $blog->title }}</h2>
                 <p>By : <a href="/blog?author={{ $blog->author->username }}">{{ $blog->author->name }}</a> in <a
                         href="/blog?category={{ $blog->category->slug }}">{{ $blog->category->name }}</a></p>
-                <img src="https://source.unsplash.com/1200x400?{{ $blog->category->name }}" class="card-img-top"
-                    alt="{{ $blog->category->name }}">
+                @if ($blog->image)
+                    <div style="max-height: 350px; overflow: hidden">
+                        <img src="{{ asset('storage/' . $blog->image) }}" class="card-img-top"
+                            alt="{{ $blog->category->name }}">
+                    </div>
+                @else
+                    <img src="https://source.unsplash.com/1200x400?{{ $blog->category->name }}" class="card-img-top"
+                        alt="{{ $blog->category->name }}">
+                @endif
                 <article class="my-3 fs-5">
                     {!! $blog->body !!}
                 </article>
