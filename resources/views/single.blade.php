@@ -13,8 +13,7 @@
                             alt="{{ $blog->category->name }}">
                     </div>
                 @else
-                    <img src="https://source.unsplash.com/1200x400?{{ $blog->category->name }}" class="card-img-top"
-                        alt="{{ $blog->category->name }}">
+                    <img src="{{ asset('img/default.jpg') }}" class="card-img-top" alt="{{ $blog->category->name }}">
                 @endif
                 <article class="my-3 fs-5">
                     {!! $blog->body !!}

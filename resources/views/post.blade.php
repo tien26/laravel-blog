@@ -29,8 +29,9 @@
                         alt="{{ $blog[0]->category->name }}">
                 </div>
             @else
-                <img src="https://source.unsplash.com/1200x400?{{ $blog[0]->category->name }}" class="card-img-top"
-                    alt="{{ $blog[0]->category->name }}">
+                <div style="max-height: 350px; overflow: hidden">
+                    <img src="{{ asset('img/default.jpg') }}" class="card-img-top" alt="{{ $blog[0]->category->name }}">
+                </div>
             @endif
             <div class="card-body text-center">
                 <h3 class="card-title"><a href="/blog/{{ $blog[0]->slug }}" class="text-dark">{{ $blog[0]->title }}</a>
@@ -59,8 +60,8 @@
                                 <img src="{{ asset('storage/' . $b->image) }}" class="card-img-top"
                                     alt="{{ $b->category->name }}">
                             @else
-                                <img src="https://source.unsplash.com/500x400?{{ $b->category->name }}"
-                                    class="card-img-top" alt="{{ $b->category->name }}">
+                                <img src="{{ asset('img/default.jpg') }}" class="card-img-top"
+                                    alt="{{ $b->category->name }}">
                             @endif
                             <div class="card-body">
                                 <h5 class="card-title"><a href="/blog/{{ $b->slug }}">{{ $b->title }}</a></h5>
